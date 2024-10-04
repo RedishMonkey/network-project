@@ -1,0 +1,5 @@
+*
+!.gitignore
+!project_book\working_file.docx 
+!packet_tracer\working_file.pkt 
+!snippets
