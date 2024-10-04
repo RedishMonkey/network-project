@@ -1,0 +1,175 @@
+switch left
+----------------------------------
+spanning-tree mode rapid-pvst 
+vlan 11
+name managers
+interface range fa0/1-6
+switchport mode access
+switchport access vlan 11
+
+vlan 53
+name HR
+interface range fa0/7-12
+switchport mode access
+switchport access vlan 53
+
+
+switch middle
+---------------------------------
+spanning-tree mode rapid-pvst 
+vlan 114
+name storage
+ex
+interface range fa0/7-12
+switchport mode access
+switchport access vlan 114
+ex
+
+vlan 117
+name warehouse workers
+ex
+interface range fa0/1-6
+switchport mode access
+switchport access vlan 117
+ex
+
+ex
+sh vl br
+
+
+
+switch right
+---------------------------------
+en
+conf t
+
+spanning-tree mode rapid-pvst 
+vlan 119
+name storage
+ex
+interface range fa0/7-12
+switchport mode access
+switchport access vlan 119
+ex
+
+vlan 122
+name warehouse workers
+ex
+interface range fa0/1-6
+switchport mode access
+switchport access vlan 122
+ex
+
+ex
+sh vl br
+
+
+
+
+
+
+black hole vlan
+----------------------------------
+en
+conf t
+
+vlan 667
+name blackHoleVlan
+ex
+interface range fa0/13-24
+switchport mode access
+switchport access vlan 667
+ex
+
+ex
+sh vl br
+
+
+
+
+
+
+stp:
+switch access layer
+--------------------------
+spanning-tree mode rapid-pvst 
+interface range gig0/1-2
+switchport mode trunk
+
+
+multilayer left switch
+----------------------------------
+en
+conf t
+
+interface range gig1/0/2-5
+switchport mode trunk
+
+interface range gig1/0/2-4
+spanning-tree guard root
+
+
+
+ex
+vlan 11
+name managers
+vlan 53
+name HR
+vlan 114
+name storage
+vlan 117
+name warehouseWorkers
+vlan 119
+name drivers
+vlan 122
+name inventory
+
+
+ex
+spanning-tree mode rapid-pvst 
+spanning-tree vlan 1,53,11,114 root primary
+spanning-tree vlan 117,119,122 root secondary 
+
+
+
+
+multilayer rightswitch
+----------------------------------
+en
+conf t
+
+interface range gig1/0/2-5
+switchport mode trunk
+ex
+interface range gig1/0/2-4
+spanning-tree guard root
+
+ex
+vlan 11
+name managers
+vlan 53
+name HR
+vlan 114
+name storage
+vlan 117
+name warehouseWorkers
+vlan 119
+name drivers
+vlan 122
+name inventory
+
+
+ex
+spanning-tree mode rapid-pvst 
+spanning-tree vlan 117,119,122 root primary
+spanning-tree vlan 1,53,11,114 root secondary 
+
+
+
+
+
+root guard and portfast on access layer switches
+--------------------------------------------
+interface range fa0/1-12
+spanning-tree bpduguard enable 
+spanning-tree portfast 

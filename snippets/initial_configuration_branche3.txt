@@ -1,0 +1,187 @@
+access layer
+---------------------------------------
+
+left switch
+----------------------------------------
+vlan 53
+name HR
+
+vlan 11
+name managers
+
+ex
+
+interface range fa0/1-6
+switchport mode access
+switchport access vlan 53
+
+ex
+
+
+interface range fa0/7-12
+switchport mode access
+switchport access vlan 11
+ex
+
+interface vlan 53
+ip address 10.3.53.254 255.255.255.0
+ex
+
+interface vlan 11
+ip address 10.3.11.254 255.255.255.0
+ex
+
+ip routing
+
+interface range gig0/1-2
+no switchport
+ex
+
+interface gig0/1
+ip address 10.3.1.1 255.255.255.252
+ex
+
+
+interface gig0/2
+ip address 10.3.1.5 255.255.255.252
+ex
+
+middle switch
+---------------------------------------------------
+vlan 114
+name storage
+
+vlan 150
+name QA
+
+ex
+
+interface range fa0/1-6
+switchport mode access
+switchport access vlan 114
+
+ex
+
+
+interface range fa0/7-12
+switchport mode access
+switchport access vlan 150
+ex
+
+interface vlan 114
+ip address 10.3.114.254 255.255.255.0
+ex
+
+interface vlan 150
+ip address 10.3.150.254 255.255.255.0
+ex
+
+ip routing
+
+interface range gig0/1-2
+no switchport
+
+interface gig0/1
+ip address 10.3.1.9 255.255.255.252
+ex
+
+interface gig0/2
+ip address 10.3.1.13 255.255.255.252
+ex
+
+
+right switch
+-------------------------------------------------
+
+vlan 160
+name RES
+
+vlan 170
+name DEV
+
+ex
+
+interface range fa0/1-6
+switchport mode access
+switchport access vlan 160
+
+ex
+
+
+interface range fa0/7-12
+switchport mode access
+switchport access vlan 170
+ex
+
+interface vlan 160
+ip address 10.3.160.254 255.255.255.0
+ex
+
+interface vlan 170
+ip address 10.3.170.254 255.255.255.0
+ex
+
+ip routing
+
+interface range gig0/1-2
+no switchport
+
+interface gig0/1
+ip address 10.3.1.17 255.255.255.252
+ex
+
+interface gig0/2
+ip address 10.3.1.21 255.255.255.252
+ex
+
+distribution layer
+--------------------------------------------
+
+left router
+---------------------------------------
+
+ip routing
+
+interface range gig1/0/1-6
+no switchport
+ex
+
+interface gig1/0/2
+ip address 10.3.1.2 255.255.255.252
+ex
+
+interface gig1/0/3
+ip address 10.3.1.10 255.255.255.252
+ex
+
+interface gig1/0/4
+ip address 10.3.1.18 255.255.255.252
+ex
+
+interface gig1/0/6
+ip address 10.3.200.254 255.255.255.0
+
+
+right router
+-----------------------------------
+
+ip routing
+
+interface range gig1/0/1-6
+no switchport
+ex
+
+interface gig1/0/2
+ip address 10.3.1.6 255.255.255.252
+ex
+
+interface gig1/0/3
+ip address 10.3.1.14 255.255.255.252
+ex
+
+interface gig1/0/4
+ip address 10.3.1.22 255.255.255.252
+ex
+
+interface gig1/0/6
+ip address 10.3.201.254 255.255.255.0
