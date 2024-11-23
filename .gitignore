@@ -1,7 +1,7 @@
 *
 !.gitignore
 !project_book\working_file.docx 
-!project_book\ElectronicDiagrams.DOCX
+!project_book\ElectronicDiagrams.docx
 !packet_tracer\working_file.pkt 
 !snippets
 !liel_networks_project_book.pdf
