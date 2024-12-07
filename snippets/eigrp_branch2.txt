@@ -1,0 +1,68 @@
+distribution
+-------------------------------------------------------
+left ml switch
+-----------------------------------------------------------------
+
+router eigrp 20
+eigrp router-id 10.2.200.254
+
+network 10.2.11.0 0.0.0.255
+network 10.2.53.0 0.0.0.255
+network 10.2.114.0 0.0.0.255
+network 10.2.117.0 0.0.0.255
+network 10.2.119.0 0.0.0.255
+network 10.2.122.0 0.0.0.255
+network 10.2.200.0 0.0.0.255
+network 10.2.100.0 0.0.0.3
+
+passive-interface vlan 11
+passive-interface vlan 53
+passive-interface vlan 114
+passive-interface vlan 117
+passive-interface vlan 119
+passive-interface vlan 122
+
+right ml switch
+-----------------------------------------------------------------
+
+router eigrp 20
+eigrp router-id 10.2.201.254
+
+network 10.2.11.0 0.0.0.255
+network 10.2.53.0 0.0.0.255
+network 10.2.114.0 0.0.0.255
+network 10.2.117.0 0.0.0.255
+network 10.2.119.0 0.0.0.255
+network 10.2.122.0 0.0.0.255
+network 10.2.200.0 0.0.0.255
+network 10.2.101.0 0.0.0.255
+
+passive-interface vlan 11
+passive-interface vlan 53
+passive-interface vlan 114
+passive-interface vlan 117
+passive-interface vlan 119
+passive-interface vlan 122
+
+core layer
+------------------------------------
+left router
+---------------------------------------------------------------
+
+router eigrp 20
+eigrp router-id 10.2.100.2
+
+no network 10.2.101.0 0.0.0.3
+network 10.2.100.0 0.0.0.3
+
+no auto-summary
+
+
+right router
+---------------------------------------------------------------
+
+router eigrp 20
+eigrp router-id 10.2.101.2
+
+network 10.2.101.0 0.0.0.3
+no auto-summary
