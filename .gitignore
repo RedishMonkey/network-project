@@ -1,6 +1,8 @@
 !.gitignore 
 !project_book/*
-!packet_tracer/* 
+!project_book/local-backups/.gitkeep
+!packet_tracer/*
+!packet_tracer/local-backups/.gitkeep
 !snippets/**
 !liel_networks_project_book.pdf
 
