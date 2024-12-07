@@ -49,15 +49,15 @@ adding sub interfaces
 interface GigabitEthernet0/0.200
 encapsulation dot1Q 200
 ip address 10.1.200.253 255.255.255.0
-standby 11 ip 10.1.200.254
-standby 11 priority 90
+standby 200 ip 10.1.200.254
+standby 200 priority 90
 ex
 
 interface GigabitEthernet0/0.201
 encapsulation dot1Q 201
 ip address 10.1.201.253 255.255.255.0
-standby 11 ip 10.1.201.254
-standby 11 priority 201
+standby 201 ip 10.1.201.254
+standby 201 priority 110
 
 
 ip dhcp pool vlan11
@@ -96,7 +96,8 @@ spanning-tree vlan 1,11,37,39,200 root primary
 spanning-tree vlan 53,114,124,201 root secondary
 
 interface gig5/1
-switchport mode trunk
+switchport mode access
+switchport access vlan 200
 ex
 
 
@@ -111,19 +112,15 @@ spanning-tree vlan 53,114,123,201 root primary
 spanning-tree vlan 1,11,37,39,200 root secondary
 
 interface gig5/1
-switchport mode trunk
+switchport mode access
+switchport access vlan 201
 ex
 
 
 left switch dmz
 --------------------
-vtp mode client
-vtp domain SalesBranch
-vtp password s@lesBr@nch
-
-
 interface gig0/1
-switchport mode trunk
+switchport mode access
 switchport access vlan 100
 
 interface gig0/2
