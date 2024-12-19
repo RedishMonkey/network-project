@@ -1,7 +1,7 @@
 access layer
 ---------------------------------------
 
-left switch
+left ml switch
 ----------------------------------------
 vlan 53
 name HR
@@ -46,7 +46,7 @@ interface gig0/2
 ip address 10.3.1.5 255.255.255.252
 ex
 
-middle switch
+middle ml switch
 ---------------------------------------------------
 vlan 114
 name storage
@@ -90,7 +90,7 @@ ip address 10.3.1.13 255.255.255.252
 ex
 
 
-right switch
+right ml switch
 -------------------------------------------------
 
 vlan 160
@@ -137,7 +137,7 @@ ex
 distribution layer
 --------------------------------------------
 
-left router
+left ml switch
 ---------------------------------------
 
 ip routing
@@ -162,7 +162,7 @@ interface gig1/0/6
 ip address 10.3.200.254 255.255.255.0
 
 
-right router
+right ml switch
 -----------------------------------
 
 ip routing
