@@ -1,3 +1,4 @@
+*
 !.gitignore 
 !project_book/*
 !project_book/local-backups/.gitkeep
@@ -6,5 +7,3 @@
 !snippets/**
 !liel_networks_project_book.pdf
 !saved_logo.png
-
-*
