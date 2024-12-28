@@ -2,7 +2,7 @@
 !.gitignore 
 !project_book/*
 !project_book/local-backups/.gitkeep
-!project_book/show-commands-explained
+!project_book/show-commands-explained/**
 !packet_tracer/*
 !packet_tracer/local-backups/.gitkeep
 !snippets/**
