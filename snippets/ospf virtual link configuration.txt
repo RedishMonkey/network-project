@@ -1,0 +1,172 @@
+ospf virtual link configuration
+
+ml switch abr
+----------------------------
+
+no switchport
+int gig1/0/7
+ip address 10.3.2.1 255.255.255.252
+no shutdown
+ex
+
+router ospf 10
+network 10.3.2.0 0.0.0.3 area 1
+ex
+
+
+ospf-area1-r1
+----------------------------
+
+int gig2/0
+ip address 10.3.2.2 255.255.255.252
+no shutdown
+ex
+
+int gig1/0
+ip address 10.3.2.9 255.255.255.252
+no shutdown
+ex
+
+
+int gig0/0
+ip address 10.3.2.5 255.255.255.252
+no shutdown
+ex
+
+router ospf 10
+router-id 8.8.8.8
+network 10.3.2.0 0.0.0.3 area 1
+network 10.3.2.4 0.0.0.3 area 1
+network 10.3.2.8 0.0.0.3 area 1
+ex
+
+
+
+ospf-area1-r2
+----------------------------
+
+int gig1/0
+ip address 10.3.2.10 255.255.255.252
+no shutdown
+ex
+
+int gig0/0
+ip address 10.3.2.14 255.255.255.252
+no shutdown
+ex
+
+router ospf 10
+router-id 9.9.9.9
+network 10.3.2.8 0.0.0.3 area 1
+network 10.3.2.12 0.0.0.3 area 1
+ex
+
+
+ospf-area1-2-r1
+----------------------------
+
+int gig2/0
+ip address 10.3.2.6 255.255.255.252
+no shutdown
+ex
+
+int gig1/0
+ip address 10.3.2.13 255.255.255.252
+no shutdown
+ex
+
+int gig0/0
+ip address 10.3.2.18 255.255.255.252
+no shutdown
+ex
+
+router ospf 10
+router-id 10.10.10.10
+network 10.3.2.4 0.0.0.3 area 1
+network 10.3.2.12 0.0.0.3 area 1
+network 10.3.2.16 0.0.0.3 area 2
+ex
+
+
+ospf-area2-r1
+----------------------------
+
+int gig2/0
+ip address 10.3.2.17 255.255.255.252
+no shutdown
+ex
+
+int gig1/0
+ip address 10.3.2.25 255.255.255.252
+no shutdown
+ex
+
+int gig0/0
+ip address 10.3.2.21 255.255.255.252
+no shutdown
+ex
+
+router ospf 10
+router-id 11.11.11.11
+network 10.3.2.16 0.0.0.3 area 2
+network 10.3.2.20 0.0.0.3 area 2
+network 10.3.2.24 0.0.0.3 area 2
+ex
+
+
+
+
+ospf-area2-r2
+----------------------------
+
+int gig1/0
+ip address 10.3.2.30 255.255.255.252
+no shutdown
+ex
+
+int gig0/0
+ip address 10.3.2.22 255.255.255.252
+no shutdown
+ex
+
+router ospf 10
+router-id 12.12.12.12
+network 10.3.2.20 0.0.0.3 area 2
+network 10.3.2.28 0.0.0.3 area 2
+ex
+
+
+ospf-area2-r2
+----------------------------
+
+int gig1/0
+ip address 10.3.2.29 255.255.255.252
+no shutdown
+ex
+
+int gig0/0
+ip address 10.3.2.26 255.255.255.252
+no shutdown
+ex
+
+router ospf 10
+router-id 13.13.13.13
+network 10.3.2.26 0.0.0.3 area 2
+network 10.3.2.29 0.0.0.3 area 2
+ex
+
+
+virtuall link
+-----------------------------
+ml abr
+------------------------------
+router ospf 10
+area 1 virtual-link 10.10.10.10
+ex
+
+ospf-area1-2-r1
+------------------------------------
+router ospf 10
+area 1 virtual-link 4.4.4.4
+ex
+
