@@ -1,0 +1,190 @@
+bgp-configuration
+-----------------------------------
+
+R1-C-TL
+------------------------------
+int gig0/0/0
+ip address 205.0.1.5 255.255.255.252 
+no shutdown
+exit
+
+
+ip access-list extended NAT-ACL
+permit ip 10.0.0.0 0.255.255.255 any
+deny ip any any
+ex
+
+int gig0/0/0
+ip nat outside
+ex
+
+int gig0/0
+ip nat inside
+ex
+
+int gig0/1/0
+ip nat inside
+ex
+
+ip nat inside source list NAT-ACL interface gig0/0/0 overload
+
+
+R2-C-TL
+----------------------------
+int gig0/0/0
+ip address 205.0.1.1 255.255.255.252
+no shutdown
+exit
+
+
+ip access-list extended NAT-ACL
+permit ip 10.0.0.0 0.255.255.255 any
+deny ip any any
+ex
+
+int gig0/0/0
+ip nat outside
+ex
+
+int gig0/0
+ip nat inside
+ex
+
+ip nat inside source list NAT-ACL interface gig0/0/0 overload
+
+
+
+ISP1
+------------------------
+int gig0/0/0
+ip address 205.0.1.6 255.255.255.252
+no shutdown
+ex
+
+int gig0/1/0
+ip address 205.0.1.2 255.255.255.252
+no shutdown
+ex
+
+int gig0/2/0
+ip address 205.0.1.9 255.255.255.252
+ex
+
+ip route 0.0.0.0 0.0.0.0 gig0/0/0
+
+
+
+R1-C-CY
+--------------------------------------
+
+int gig0/0/0
+ip address 205.0.1.13 255.255.255.252
+no shutdown
+ex
+
+ip route 0.0.0.0 0.0.0.0 gig0/0/0
+
+router ospf 10
+default-information originate
+ex
+
+ip access-list extended NAT-ACL
+permit ip 10.0.0.0 0.255.255.255 any
+deny ip any any
+ex
+
+int gig0/0/0
+ip nat outside
+ex
+
+int gig0/0
+ip nat inside
+ex
+
+ip nat inside source list NAT-ACL interface gig0/0/0 overload
+
+
+
+R2-C-CY
+--------------------------------------
+
+int gig0/0/0
+ip address 205.0.1.17 255.255.255.252
+no shutdown
+ex
+
+ip route 0.0.0.0 0.0.0.0 gig0/0/0
+
+
+router ospf 10
+default-information originate
+ex
+
+
+ip access-list extended NAT-ACL
+permit ip 10.0.0.0 0.255.255.255 any
+deny ip any any
+ex
+
+int gig0/0/0
+ip nat outside
+ex
+
+int gig0/0
+ip nat inside
+ex
+
+
+ip nat inside source list NAT-ACL interface gig0/0/0 overload
+
+
+
+ISP2
+------------------------
+int gig0/0/0
+ip address 205.0.1.14 255.255.255.252
+no shutdown
+ex
+
+int gig0/1/0
+ip address 205.0.1.18 255.255.255.252
+no shutdown
+ex
+
+int gig0/2/0
+ip address 205.0.1.69 255.255.255.252
+no shutdown
+ex
+
+
+ip route 0.0.0.0 0.0.0.0 g0/2/0
+
+
+BGP-RING-R1
+-----------------------
+int gig0/0/0
+ip address 205.0.1.10 255.255.255.252
+no shutdown
+ex
+
+int gig0/1/0
+ip address 205.0.1.25 255.255.255.252
+no shutdown
+ex
+
+int gig0/2/0
+ip address 205.0.1.22 255.255.255.252
+no shutdown
+ex
+
+int gig0/3/0
+ip address 205.0.1.53 255.255.255.252
+no shutdown
+ex
+
+ip route 205.0.1.0 255.255.255.252 gig0/0/0
+ip route 205.0.1.4 255.255.255.252 gig0/0/0
+
+
+
+

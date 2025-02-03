@@ -1,0 +1,202 @@
+left router
+-----------------------------
+adding sub interfaces and dhcp
+--------------------------------------------------------------
+interface GigabitEthernet0/0.200
+encapsulation dot1Q 200
+ip address 10.1.200.252 255.255.255.0
+standby 200 ip 10.1.200.254
+standby 200 priority 110
+ex
+
+interface GigabitEthernet0/0.201
+encapsulation dot1Q 201
+ip address 10.1.201.252 255.255.255.0
+standby 201 ip 10.1.201.254
+standby 201 priority 90
+
+
+ip dhcp pool vlan11
+dns-server 10.1.200.2
+ex
+
+ip dhcp pool vlan37
+dns-server 10.1.200.2 
+ex
+
+ip dhcp pool vlan39
+dns-server 10.1.200.2 
+ex
+
+ip dhcp pool vlan53
+dns-server 10.1.200.2 
+ex
+
+ip dhcp pool vlan123
+dns-server 10.1.200.2 
+ex
+
+ip dhcp pool vlan114
+dns-server 10.1.200.2
+ex
+
+
+right router
+------------------
+adding sub interfaces
+------------------------------------------------------------
+
+interface GigabitEthernet0/0.200
+encapsulation dot1Q 200
+ip address 10.1.200.253 255.255.255.0
+standby 200 ip 10.1.200.254
+standby 200 priority 90
+ex
+
+interface GigabitEthernet0/0.201
+encapsulation dot1Q 201
+ip address 10.1.201.253 255.255.255.0
+standby 201 ip 10.1.201.254
+standby 201 priority 110
+
+
+ip dhcp pool vlan11
+dns-server 10.1.201.2
+ex
+
+ip dhcp pool vlan37
+dns-server 10.1.201.2 
+ex
+
+ip dhcp pool vlan39
+dns-server 10.1.201.2
+ex
+
+ip dhcp pool vlan53
+dns-server 10.1.201.2 
+ex
+
+ip dhcp pool vlan123
+dns-server 10.1.201.2 
+ex
+
+ip dhcp pool vlan114
+dns-server 10.1.201.2
+ex
+
+
+left switch distribution layer
+----------------------------------
+adding dmz to pvst
+-----------------------------------------------
+no spanning-tree vlan 1,11,37,39,200 root primary
+no spanning-tree vlan 53,114,124,201 root secondary
+
+spanning-tree vlan 1,11,37,39,200 root primary
+spanning-tree vlan 53,114,124,201 root secondary
+
+interface gig5/1
+switchport mode access
+switchport access vlan 200
+ex
+
+
+right switch distribution layer
+-----------------------------------
+adding dmz to pvst
+--------------------------------------------------
+no spanning-tree vlan 53,114,123 root primary
+no spanning-tree vlan 1,11,37,39 root secondary
+
+spanning-tree vlan 53,114,123,201 root primary
+spanning-tree vlan 1,11,37,39,200 root secondary
+
+interface gig5/1
+switchport mode access
+switchport access vlan 201
+ex
+
+
+left switch dmz1
+--------------------
+vlan 200
+name dmz1
+ex
+
+interface gig0/1
+switchport mode access
+switchport access vlan 200
+ex
+
+interface gig1/1
+switchport mode access
+switchport access vlan 200
+ex
+
+interface gig2/1
+switchport mode access
+switchport access vlan 200
+ex
+
+interface gig3/1
+switchport mode access
+switchport access vlan 200
+ex
+
+interface gig4/1
+switchport mode access
+switchport access vlan 200
+ex
+
+interface gig5/1
+switchport mode access
+switchport access vlan 200
+ex
+
+interface gig6/1
+switchport mode access
+switchport access vlan 200
+ex
+
+
+right switch dmz2
+--------------------
+vlan 201
+name dmz2
+ex
+
+interface gig0/1
+switchport mode access
+switchport access vlan 201
+ex
+
+interface gig1/1
+switchport mode access
+switchport access vlan 201
+ex
+
+interface gig2/1
+switchport mode access
+switchport access vlan 201
+ex
+
+interface gig3/1
+switchport mode access
+switchport access vlan 201
+ex
+
+interface gig4/1
+switchport mode access
+switchport access vlan 201
+ex
+
+interface gig5/1
+switchport mode access
+switchport access vlan 201
+ex
+
+interface gig6/1
+switchport mode access
+switchport access vlan 201
+ex
+

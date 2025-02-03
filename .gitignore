@@ -5,6 +5,7 @@
 !project_book/show-commands-explained/**
 !packet_tracer/*
 !packet_tracer/local-backups/.gitkeep
-!snippets/**
+!snippets/
+!snippets/*
 !liel_networks_project_book.pdf
 !saved_logo.png
