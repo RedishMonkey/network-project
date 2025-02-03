@@ -236,9 +236,38 @@ ex
 
 router ospf-area20-r2
 ------------------------------
+interface gig0/0
+ip address 10.3.20.6 255.255.255.252
+ex
+
+interface gig1/0
+no ip address 10.3.20.9 255.255.255.252
+ip address 192.168.3.1 255.255.255.0
+ex
+
+
+router ospf 10
+router-id 23.23.23.23
+network 10.3.20.4 0.0.0.3 area 20
+area 20 stub no-summary
+ex
+
+router rip
+version 2
+network 192.168.3.0
+ex
+
+
+
 router rip-r1
 ------------------------------
+interface gig0/0
+ip address 192.168.3.2 255.255.255.0
+ex
 
+router rip
+version 2
+network 192.168.3.0
 
 
 router ospf-area10-r2
