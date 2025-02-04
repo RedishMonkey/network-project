@@ -1,5 +1,6 @@
 *
 !.gitignore 
+!project_book/
 !project_book/*
 !project_book/local-backups/.gitkeep
 !project_book/show-commands-explained/**
