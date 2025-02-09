@@ -98,3 +98,30 @@ exit
 
 
 
+
+metro-ethernet-switch
+------------------------------
+vlan 10
+
+int gig0/1
+switchport mode access
+switchport access vlan 10
+ex
+
+
+int gig1/1
+switchport mode access
+switchport access vlan 10
+ex
+
+
+int gig2/1
+switchport mode access
+switchport access vlan 10
+ex
+
+
+int gig3/1
+switchport mode access
+switchport access vlan 10
+ex
