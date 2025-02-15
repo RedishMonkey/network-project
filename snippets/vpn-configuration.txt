@@ -1,0 +1,179 @@
+vpn configuration
+
+
+BGP-Ring-R8
+-----------------------
+int gig0/2/0
+ip address 205.0.1.74 255.255.255.252
+ex
+
+router bgp 6298
+network 205.0.1.72 mask 255.255.255.252
+ex
+
+
+
+BGP-Ring-R4
+-----------------------
+int gig0/2/0
+ip address 205.0.1.78 255.255.255.252
+ex
+
+router bgp 6294
+network 205.0.1.76 mask 255.255.255.252
+ex
+
+
+
+VPN-R1
+-----------------------------------------
+int gig0/0/0
+ip address 205.0.1.73 255.255.255.252
+no shutdown
+ex
+
+int gig0/1/0
+ip address 10.0.0.254 255.255.255.0
+no shutdown
+ex
+
+int tunnel 1
+tunnel destination 205.0.1.77
+tunnel source gig0/1/0
+ip address 10.0.2.1 255.255.255.252
+ex
+
+
+ip route 0.0.0.0 0.0.0.0 gig0/0/0
+
+
+ip access-list extended NAT-ACL
+permit ip 10.0.0.0 0.255.255.255 any
+deny ip any any
+ex
+
+int gig0/0/0
+ip nat outside
+ex
+
+int gig0/1/0
+ip nat inside
+ex
+
+ip nat inside source list NAT-ACL interface gig0/0/0 
+
+
+
+
+router eigrp 100
+network 10.0.0.0 0.0.0.255
+network 10.0.2.0 0.0.0.255
+ex
+
+
+crypto isakmp policy 10
+encryption aes 256
+authentication pre-share
+hash md5
+group 5
+ex
+
+crypto isakmp key isakmp-pa55w0rd address 205.0.1.77
+
+crypto ipsec transform-set IPSEC-TS esp-aes esp-sha-hmac
+
+
+ip access-list extended VPN-ACL
+permit gre any any
+ex
+
+
+crypto map VPN-MAP 10 ipsec-isakmp
+set peer 205.0.1.77
+set transform-set IPSEC-TS
+match address VPN-ACL
+ex
+
+
+
+interface gig0/0/0
+crypto map VPN-MAP
+ex
+
+
+VPN-R2
+-----------------------------------------
+int gig0/0/0
+ip address 205.0.1.77 255.255.255.252
+no shutdown
+ex
+
+int gig0/1/0
+ip address 10.0.1.254 255.255.255.0
+no shutdown
+ex
+
+
+int tunnel 1
+tunnel destination 205.0.1.73
+tunnel source gig0/1/0
+ip address 10.0.2.2 255.255.255.252
+ex
+
+
+ip route 0.0.0.0 0.0.0.0 gig0/0/0
+
+
+ip access-list extended NAT-ACL
+permit ip 10.0.0.0 0.255.255.255 any
+deny ip any any
+ex
+
+int gig0/0/0
+ip nat outside
+ex
+
+int gig0/1/0
+ip nat inside
+ex
+
+ip nat inside source list NAT-ACL interface gig0/0/0 
+
+
+
+router eigrp 100
+network 10.0.1.0 0.0.0.255
+network 10.0.2.0 0.0.0.3
+ex
+
+
+
+crypto isakmp policy 10
+encryption aes 256
+authentication pre-share
+hash md5
+group 5
+ex
+
+crypto isakmp key isakmp-pa55w0rd address 205.0.1.73
+
+crypto ipsec transform-set IPSEC-TS esp-aes esp-sha-hmac
+
+
+ip access-list extended VPN-ACL
+permit gre any any
+ex
+
+
+crypto map VPN-MAP 10 ipsec-isakmp
+set peer 205.0.1.73
+set transform-set IPSEC-TS
+match address VPN-ACL
+ex
+
+
+
+interface gig0/0/0
+crypto map VPN-MAP
+ex
+
