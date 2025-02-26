@@ -1,0 +1,56 @@
+asa configuration
+
+
+BGP-Ring-R6
+---------------------------------
+int gig0/3/0
+ip address 205.0.1.81 255.255.255.252
+no shutdown
+ex
+
+ip route 205.0.1.80 255.255.255.252 gig0/3/0
+
+router bgp 6296
+redistribute static
+ex
+
+ISP3
+--------------------------------
+int gig0/0/0
+ip address 205.0.1.82 255.255.255.252
+no shutdown
+ex
+
+int gig0/0
+ip address 205.0.1.85 255.255.255.252
+no shutdown
+ex
+
+
+ip route 0.0.0.0 0.0.0.0 gig0/0/0
+
+
+
+
+ASA
+-------------------------
+int gig1/1
+ip address 205.0.1.86 255.255.255.252
+nameif OUTSIDE
+security-level 0
+ex
+
+
+int gig1/2
+ip address 205.0.1.86 255.255.255.252
+nameif INSIDE
+security-level 100
+ex
+
+
+object network nat_object
+subnet 10.4.1.0 255.255.255.0
+nat (INSIDE,OUTSIDE) dynamic interface
+
+
+
