@@ -1,0 +1,144 @@
+ssh configuration
+-----------------------------------------------
+branch 2 tel aviv
+----------------------------------------------------
+R1-C-TL
+-----------------------------------
+interface loopback 0
+ip address 10.0.0.1 255.255.255.255
+ip domain-name HANDCONTROLED
+ex
+
+username admin privilege 15 password admin
+
+line vty 0 15
+transport input ssh
+login local
+crypto key generate rsa
+
+
+router ospf 10
+network 10.0.0.1 0.0.0.0 area 0
+ex
+
+
+
+ML-D-TL
+-----------------------------------
+interface loopback 0
+ip address 10.0.0.2 255.255.255.255
+ex
+
+ip domain-name HANDCONTROLED
+
+
+username admin privilege 15 password admin
+
+line vty 0 15
+transport input ssh
+login local
+crypto key generate rsa
+
+
+router ospf 10
+network 10.0.0.2 0.0.0.0 area 0
+ex
+
+
+
+
+branch 1 hod Hasharon
+--------------------------
+R1-C-HH
+------------------------
+interface loopback 0
+ip address 10.0.0.3 255.255.255.255
+ex
+
+ip domain-name HANDCONTROLED
+
+
+username admin privilege 15 password admin
+
+line vty 0 15
+transport input ssh
+login local
+crypto key generate rsa
+
+
+router ospf 10
+network 10.0.0.3 0.0.0.0 area 0
+ex
+
+
+
+SW-1-HH
+----------------------------------
+interface vlan 202
+ip address 10.1.202.1 255.255.255.0
+ex
+
+ip default-gateway 10.1.202.254
+
+
+ip domain-name HANDCONTROLED
+
+
+username admin privilege 15 password admin
+
+line vty 0 15
+transport input ssh
+login local
+crypto key generate rsa
+
+
+
+
+branch 3 cyprus
+--------------------------
+R1-C-CY
+------------------------
+interface loopback 0
+ip address 10.0.0.4 255.255.255.255
+ex
+
+ip domain-name HANDCONTROLED
+
+
+username admin privilege 15 password admin
+
+line vty 0 15
+transport input ssh
+login local
+crypto key generate rsa
+
+
+router ospf 10
+network 10.0.0.4 0.0.0.0 area 0
+ex
+
+
+
+R1-A-CY
+------------------------
+interface loopback 0
+ip address 10.0.0.5 255.255.255.255
+ex
+
+ip domain-name HANDCONTROLED
+
+
+username admin privilege 15 password admin
+
+line vty 0 15
+transport input ssh
+login local
+crypto key generate rsa
+
+
+router ospf 10
+network 10.0.0.5 0.0.0.0 area 0
+ex
+
+
+

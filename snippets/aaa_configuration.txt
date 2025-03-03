@@ -1,0 +1,47 @@
+aaa configuration
+-----------------------------
+
+R1-C-HH
+-----------------------------
+aaa new-model
+aaa authentication login default group tacacs+ local
+tacacs-server host 10.1.200.7 key pa55word
+
+
+line vty 0 15
+login authentication default
+exit
+
+enable password enpa55word
+
+
+
+
+R1-C-TL
+-----------------------------
+aaa new-model
+aaa authentication login default group tacacs+ local
+tacacs-server host 10.2.200.8 key pa55word
+
+
+line vty 0 15
+login authentication default
+exit
+
+enable password enpa55word
+
+
+
+
+R1-C-CY
+-----------------------------
+aaa new-model
+aaa authentication login default group tacacs+ local
+tacacs-server host 10.3.200.8 key pa55word
+
+
+line vty 0 15
+login authentication default
+exit
+
+enable password enpa55word
