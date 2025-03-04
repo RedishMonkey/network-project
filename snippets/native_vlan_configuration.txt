@@ -1,0 +1,118 @@
+native vlan
+---------------------------------
+branch 1 - hod Hasharon
+--------------------------------
+SW1-D-HH
+------------------------------
+vlan 376
+name nativeVlan
+ex
+
+
+int range gig0/1, gig1/1, gig2/1, gig3/1, gig4/1
+switchport trunk native vlan 376
+ex
+
+
+
+SW2-D-HH
+------------------------------
+int range gig0/1, gig1/1, gig2/1, gig3/1, gig4/1
+switchport trunk native vlan 376
+ex
+
+
+
+SW1-A-HH
+------------------------------
+int range gi0/1-2
+switchport trunk native vlan 376
+ex
+
+
+
+
+
+SW2-A-HH
+------------------------------
+int range gi0/1-2
+switchport trunk native vlan 376
+ex
+
+
+
+
+SW3-A-HH
+------------------------------
+int range gi0/1-2
+switchport trunk native vlan 376
+ex
+
+
+
+
+branch 2 - hod Hasharon
+--------------------------------
+SW1-A-TL
+------------------------------
+vlan 376
+name nativeVlan
+ex
+
+
+int range gi0/1-2
+switchport trunk native vlan 376
+ex
+
+
+
+SW2-A-TL
+------------------------------
+vlan 376
+name nativeVlan
+ex
+
+
+int range gi0/1-2
+switchport trunk native vlan 376
+ex
+
+
+
+SW3-A-TL
+------------------------------
+vlan 376
+name nativeVlan
+ex
+
+
+int range gi0/1-2
+switchport trunk native vlan 376
+ex
+
+
+
+ML1-D-TL
+------------------------------
+vlan 376
+name nativeVlan
+ex
+
+
+int range gig1/0/2-5
+switchport trunk native vlan 376
+ex
+
+
+
+
+ML2-D-TL
+------------------------------
+vlan 376
+name nativeVlan
+ex
+
+
+int range gig1/0/2-5
+switchport trunk native vlan 376
+ex

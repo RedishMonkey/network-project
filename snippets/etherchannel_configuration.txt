@@ -1,0 +1,102 @@
+etherchannel configuration
+------------------------------
+branch 1 hod Hasharon
+------------------------
+SW1-D-HH
+---------------------
+int port-channel 1
+ex
+
+int range gig5/1, gig6/1
+channel-group 1 mode desirable
+ex
+
+
+
+Switch0
+---------------------
+int port-channel 1
+ex
+
+int range gig0/1, gig8/1
+channel-group 1 mode desirable
+ex
+
+
+
+
+branch 2 tel aviv
+------------------------
+SW1-D-HH
+---------------------
+int port-channel 1
+no switchport
+ex
+
+int range gig1/0/7
+no switchport
+channel-group 1 mode desirable
+ex
+
+int gig1/0/6
+no switchport
+no ip address 10.2.200.254 255.255.255.0
+channel-group 1 mode desirable
+ex
+
+int port-channel 1
+ip address 10.2.200.254 255.255.255.0
+ex
+
+
+SW1-DMZ-TL
+---------------------
+int port-channel 1
+ex
+
+int range gig1/1, gig9/1
+channel-group 1 mode desirable
+ex
+
+int port-channel 1
+no shutdown
+ex
+
+
+branch 3 cyprus
+------------------------
+ML1-D-CY
+---------------------
+int port-channel 1
+no switchport
+ex
+
+int range gig1/0/5
+no switchport
+channel-group 1 mode desirable
+ex
+
+int gig1/0/6
+no switchport
+no ip address 10.3.200.254 255.255.255.0
+channel-group 1 mode desirable
+ex
+
+int port-channel 1
+ip address 10.3.200.254 255.255.255.0
+ex
+
+
+SW1-DMZ-CY
+---------------------
+int port-channel 1
+ex
+
+int range gig1/1, gig9/1
+channel-group 1 mode desirable
+ex
+
+int port-channel 1
+no shutdown
+ex
+

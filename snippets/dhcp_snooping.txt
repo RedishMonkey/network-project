@@ -1,0 +1,147 @@
+dhcp snooping
+------------------------
+branch 1 hod Hasharon
+-------------------------
+SW1-A-HH
+--------------------
+ip dhcp snooping vlan 11,37
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+int range gig0/1-2
+ip dhcp snooping trust
+ip dhcp snooping limit rate 4
+ex
+
+
+
+SW2-A-HH
+--------------------
+ip dhcp snooping vlan 39,53
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+int range gig0/1-2
+ip dhcp snooping trust
+ip dhcp snooping limit rate 4
+ex
+
+
+SW3-A-HH
+--------------------
+ip dhcp snooping vlan 114,123
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+int range gig0/1-2
+ip dhcp snooping trust
+ip dhcp snooping limit rate 4
+ex
+
+
+
+branch 2 tel aviv
+---------------------
+SW1-A-TL
+-----------------------
+ip dhcp snooping vlan 11,53
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+int range gig0/1-2
+ip dhcp snooping trust
+ip dhcp snooping limit rate 4
+ex
+
+
+
+
+
+SW2-A-TL
+-----------------------
+ip dhcp snooping vlan 114,117
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+int range gig0/1-2
+ip dhcp snooping trust
+ip dhcp snooping limit rate 4
+ex
+
+
+SW3-A-TL
+-----------------------
+ip dhcp snooping vlan 119,122
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+int range gig0/1-2
+ip dhcp snooping trust
+ip dhcp snooping limit rate 4
+ex
+
+
+
+
+
+branch 3 cyprus
+-------------------------------
+ML1-A-CY
+---------------------------------
+ip dhcp snooping vlan 11,53
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+ML2-A-CY
+--------------------------------
+ip dhcp snooping vlan 114,150
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+
+
+
+ML3-A-CY
+-----------------------------
+ip dhcp snooping vlan 160,170
+
+
+int range fa0/1-12
+no ip dhcp snooping trust
+ex
+
+
+
+
