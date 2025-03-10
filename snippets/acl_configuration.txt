@@ -1,0 +1,131 @@
+acl_configuration
+---------------------------------
+R1-C-HH
+-------------------------------
+no ip access-list extended INSIDE-ACL
+ip access-list extended INSIDE-ACL
+
+
+// permit managers to all inside networks
+
+permit ip 10.2.53.0 0.0.0.255 any
+deny ip any host 10.0.0.3
+
+
+permit ip any 10.1.11.0 0.0.0.255
+permit ip any 10.1.37.0 0.0.0.255
+permit ip any 10.1.39.0 0.0.0.255
+permit ip any 10.1.53.0 0.0.0.255
+permit ip any 10.1.114.0 0.0.0.255
+permit ip any 10.1.123.0 0.0.0.255
+
+
+
+// deny all other traffic
+deny ip any any
+ex
+
+
+interface gig0/0
+ip access-group INSIDE-ACL out
+ex
+
+
+
+
+R2-C-HH
+-------------------------------
+no ip access-list extended INSIDE-ACL
+ip access-list extended INSIDE-ACL
+
+
+// permit managers to all inside networks
+
+permit ip 10.2.53.0 0.0.0.255 any
+deny ip any host 10.0.0.3
+
+permit ip any 10.1.11.0 0.0.0.255
+permit ip any 10.1.37.0 0.0.0.255
+permit ip any 10.1.39.0 0.0.0.255
+permit ip any 10.1.53.0 0.0.0.255
+permit ip any 10.1.114.0 0.0.0.255
+permit ip any 10.1.123.0 0.0.0.255
+
+
+
+// deny all other traffic
+deny ip any any
+ex
+
+
+interface gig0/0
+ip access-group INSIDE-ACL out
+ex
+
+
+
+
+R1-C-TL
+-------------------------------
+no ip access-list extended INSIDE-ACL
+ip access-list extended INSIDE-ACL
+
+
+// permit managers to all inside networks
+
+permit ip 10.1.53.0 0.0.0.255 any
+deny ip any host 10.0.0.1
+deny ip any host 10.0.0.2
+
+
+permit ip any 10.2.11.0 0.0.0.255
+permit ip any 10.2.53.0 0.0.0.255
+permit ip any 10.2.114.0 0.0.0.255
+permit ip any 10.2.117.0 0.0.0.255
+permit ip any 10.2.119.0 0.0.0.255
+permit ip any 10.2.122.0 0.0.0.255
+
+
+// deny all other traffic
+deny ip any any
+ex
+
+
+interface gig0/0
+ip access-group INSIDE-ACL out
+ex
+
+
+
+
+R2-C-TL
+-------------------------------
+no ip access-list extended INSIDE-ACL
+ip access-list extended INSIDE-ACL
+
+
+// permit managers to all inside networks
+
+permit ip 10.1.53.0 0.0.0.255 any
+deny ip any host 10.0.0.1
+deny ip any host 10.0.0.2
+
+
+permit ip any 10.2.11.0 0.0.0.255
+permit ip any 10.2.53.0 0.0.0.255
+permit ip any 10.2.114.0 0.0.0.255
+permit ip any 10.2.117.0 0.0.0.255
+permit ip any 10.2.119.0 0.0.0.255
+permit ip any 10.2.122.0 0.0.0.255
+
+
+// deny all other traffic
+deny ip any any
+ex
+
+
+interface gig0/0
+ip access-group INSIDE-ACL out
+ex
+
+
