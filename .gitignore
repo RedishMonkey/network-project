@@ -4,6 +4,8 @@
 !project_book/*
 !project_book/local-backups/.gitkeep
 !project_book/show-commands-explained/**
+!project_book/topology-images/
+!project_book/topology-images/**
 !packet_tracer/*
 !packet_tracer/local-backups/.gitkeep
 !snippets/
